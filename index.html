@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><title>MVP Orçamento</title><link rel="stylesheet" href="style.css"></head>
+<body><h1>Criar Orçamento</h1>
+<label>Cliente: <input id="cliente" value="João Silva"></label>
+<label>Serviço: <input id="servico" value="Manutenção"></label>
+<label>Valor (R$): <input id="valor" type="number" value="300"></label>
+<label>Data: <input id="data" type="date"></label>
+<label>Hora: <input id="hora" type="time" value="10:00"></label>
+<button onclick="salvar()">Salvar Orçamento</button>
+<p id="total"></p><p id="alerta" role="alert"></p>
+<script src="src/orcamento.js"></script>
+<script>
+function salvar(){
+  const v = Number(document.getElementById('valor').value);
+  const total = calcularTotal(v);
+  document.getElementById('total').textContent = 'Total: R$ ' + total.toFixed(2);
+  const conflito = verificarConflito(document.getElementById('data').value, document.getElementById('hora').value);
+  document.getElementById('alerta').textContent = conflito ? 'ATENÇÃO: Conflito de horário!' : 'Orçamento salvo com sucesso!';
+}
+</script></body></html> 
